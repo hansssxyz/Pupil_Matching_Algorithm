@@ -1,10 +1,12 @@
 # Pupil_Matching_Algorithm
 
+Updated: To see the full design of the app/backend/algo, please see the demo folders for each.
+
+For brief explaination of the recommendation system algorithm itself, please read below:
+
 Please observe that all the dataset here is generated randomly. The dummy variables
 are created only to show the functionality and mechanism of the machine learning
-algo.
-
-For brief explaination:
+algo. 
 
 Matching_Score File:
 1) Each student's information is embedded by a vector corresponding to their demographic information, personal skillset, and preferences in i) college majors(such as East Asian Studies), ii) career intererests(such as Entrepreneurship), iii) social causes(such as Disaster Relief). Each mentor's information is embedded in a similar manner, except that more features are captured such as their past association with particular educational programs such as QuestBridge, etc.
