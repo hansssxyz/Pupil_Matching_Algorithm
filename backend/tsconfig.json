@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "outDir": "lib",
+    "sourceMap": true,
+    "target": "es2017",
+    "skipLibCheck": true,
+    "composite": true,
+    "strictNullChecks": true,
+    "experimentalDecorators": true
+  },
+  "compileOnSave": true,
+  "include": ["src"],
+  "references": [{ "path": "../shared" }]
+}

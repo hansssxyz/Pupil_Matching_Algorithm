@@ -1,0 +1,43 @@
+rules_version = '2';
+service cloud.firestore {
+    match /databases/{database}/{document=**} {
+        allow read, write: if true;
+    }
+    match /databases/{database}/documents {
+        match /users/{userId} {
+            allow read;
+            allow write: if request.auth.uid == userId;
+
+            match /private/default {
+                allow get: if request.auth.uid == userId;
+                allow write: if request.auth.uid == userId;
+            }
+            match /active/default {
+                allow write: if request.auth.uid == userId;
+            }
+        }
+        match /posts/{postId} {
+            allow read;
+        }
+        match /settings/{settingId} {
+            allow read;
+        }
+        match /rooms/{roomId} {
+            allow read;
+            match /messages/{messageId} {
+                allow read;
+                allow write: if resource.data.userId == request.auth.uid;
+            }
+        }
+        match /matches/{userId} {
+            allow read;
+            allow write;
+            // allow write: if userId != request.auth.uid && (request.resource.data.ignored.keys().hasOnly([request.auth.uid]) &&
+            // (request.resource.data['matches'].keys().hasOnly([request.auth.uid])) &&
+            // (request.resource.data.outgoing.keys().hasOnly([request.auth.uid])) &&
+            // (request.resource.data.recommendations.keys().hasOnly([request.auth.uid])) &&
+            // (request.resource.data.requests.keys().hasOnly([request.auth.uid]))) ||
+            // (userId == request.auth.uid);
+        }
+    }
+}

@@ -1,0 +1,19 @@
+{
+  "name": "institution-profile-images/profile.png",
+  "bucket": "pupil-devops.appspot.com",
+  "metageneration": 1,
+  "generation": 1678417725818,
+  "contentType": "image/png",
+  "storageClass": "STANDARD",
+  "contentDisposition": "inline",
+  "downloadTokens": [
+    "a87fc243-4256-4122-9f51-a0e5a5f24dde"
+  ],
+  "etag": "NdJ9q2uZWpI7q4wt+Bk6AdlluzM",
+  "customMetadata": {},
+  "timeCreated": "2023-03-10T03:08:45.818Z",
+  "updated": "2023-03-10T03:08:45.818Z",
+  "size": 91111,
+  "md5Hash": "I4c+ES+T9eEVSu6/pSQnbQ==",
+  "crc32c": "915589863"
+}
