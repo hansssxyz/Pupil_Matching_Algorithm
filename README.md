@@ -16,9 +16,39 @@ To illustrate, let's consider the famous painting of Mona Lisa, where only 30% o
 
 <img src="https://github.com/hansssxyz/Pupil_Matching_Algorithm/blob/main/getting_started_example/mona_incomplete.png" alt="Incomplete Image" width=200>
 
-<img src="https://github.com/hansssxyz/Pupil_Matching_Algorithm/blob/main/getting_started_example/mona_completed.png" alt="Completed Image" width=200>
+```python
+def soft_impute_ws(Y,OMEGA,lambda_vals,max_iter=500,tol=10**(-4)):
+    num_iters,Bs=[],[]
+    B=np.zeros(Y.shape)
+    for lambda_val in reversed(lambda_vals):
+        prev_objective=np.inf
+        num_iter=0
+        while num_iter<=max_iter:
+            #update B by the observed entries of Y
+            B[OMEGA]=Y[OMEGA]
+            #SVD of B
+            U,S,VT=np.linalg.svd(B,full_matrices=False)
+            #apply soft thresholding operator
+            S_threshold=np.maximum(S-lambda_val,0)
+            B=U@np.diag(S_threshold)@VT
+            #calculate objective 
+            cur_objective=0.5*np.linalg.norm(OMEGA*(Y-B))**2+lambda_val*np.sum(S_threshold)
+            #decide continue or break 
+            if abs(prev_objective-cur_objective)/prev_objective<tol:
+                break 
+            else:
+                prev_objective=cur_objective
+                num_iter+=1
+        num_iters.append(num_iter)
+        Bs.append(B.copy())
+    num_iters.reverse()
+    Bs.reverse()
+    return Bs,num_iters
+```
 
-[INSERT IMAGES HERE AND LINK TO Pupil_Matching_Algorithm/getting_started_example/MatrixCompletion_Algos_Demo.ipynb]
+<img src="https://github.com/hansssxyz/Pupil_Matching_Algorithm/blob/main/getting_started_example/mona_completed.png" alt="Completed Image" width=300>
+
+[See the full demo, look here](https://github.com/hansssxyz/Pupil_Matching_Algorithm/blob/main/getting_started_example/MatrixCompletion_Algos_Demo.ipynb)
 
 ## Getting More Technical
 
