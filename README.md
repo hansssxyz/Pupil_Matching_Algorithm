@@ -14,7 +14,7 @@ Collaborative filtering in recommendation systems primarily deals with missing d
 
 To illustrate, let's consider the famous painting of Mona Lisa, where only 30% of its data is randomly revealed (with the rest displayed as completely dark). By applying the softimpute algorithm (a simple collaborative filtering technique), we can significantly enhance the image's recognizability to human eyes.
 
-<img src="https://github.com/hansssxyz/Pupil_Matching_Algorithm/edit/getting_started_example/mona_complete.png">
+<img src="https://github.com/hansssxyz/Pupil_Matching_Algorithm/getting_started_example/mona_complete.png">
 [INSERT IMAGES HERE AND LINK TO Pupil_Matching_Algorithm/getting_started_example/MatrixCompletion_Algos_Demo.ipynb]
 
 ## Getting More Technical
