@@ -2,7 +2,7 @@
 
 The world of recommendation systems can be roughly divided into content-based recommendation and collaborative filtering. In content-based recommendation, if a user likes a particular item, similar items are recommended. By contrast, collaborative filtering is based on shared preferences among users. For example, if user A likes apples, bananas, and kiwi, and user B likes apples, bananas, and mango, it's likely that A and B share similar tastes. Therefore, A might enjoy mango, while B might like kiwi.
 
-This project delves into the realm of collaborative filtering, applying machine learning and optimization algorithms to demonstrate how Pupil's mobile app effectively matches each mentee with mentors. For those already familiar with collaborative filtering algorithms, feel free to jump ahead to the Getting Started section.
+This project delves into the realm of collaborative filtering, applying machine learning and optimization algorithms to demonstrate how Pupil's mobile app effectively matches each mentee with mentors. If you are already familiar with collaborative filtering algorithms, feel free to jump the Getting Started section.
 
 # Getting Started
 
