@@ -1,4 +1,3 @@
-# Introduction
 
 The world of recommendation systems can be roughly divided into content-based recommendation and collaborative filtering. In content-based recommendation, if a user likes a particular item, similar items are recommended. By contrast, collaborative filtering is based on shared preferences among users. For example, if user A likes apples, bananas, and kiwi, and user B likes apples, bananas, and mango, it's likely that A and B share similar tastes. Therefore, A might enjoy mango, while B might like kiwi.
 
