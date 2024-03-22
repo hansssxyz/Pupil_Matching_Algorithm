@@ -2,7 +2,7 @@
 
 The world of recommendation systems can be roughly divided into content-based recommendation and collaborative filtering. In content-based recommendation, if a user likes a particular item, similar items are recommended. By contrast, collaborative filtering is based on shared preferences among users. For example, if user A likes apples, bananas, and kiwi, and user B likes apples, bananas, and mango, it's likely that A and B share similar tastes. Therefore, A might enjoy mango, while B might like kiwi.
 
-This project delves into the realm of collaborative filtering, applying machine learning and optimization algorithms to demonstrate how Pupil's mobile app effectively matches each mentee with mentors. For those already familiar with collaborative filtering algorithms, feel free to jump ahead to the Getting Started section.
+This project delves into the realm of collaborative filtering, applying machine learning and optimization algorithms to demonstrate how Pupil's mobile app effectively matches each mentee with mentors. If you are already familiar with collaborative filtering algorithms, feel free to jump the Getting Started section.
 
 # Getting Started
 
@@ -14,7 +14,41 @@ Collaborative filtering in recommendation systems primarily deals with missing d
 
 To illustrate, let's consider the famous painting of Mona Lisa, where only 30% of its data is randomly revealed (with the rest displayed as completely dark). By applying the softimpute algorithm (a simple collaborative filtering technique), we can significantly enhance the image's recognizability to human eyes.
 
-[INSERT IMAGES HERE AND LINK TO Pupil_Matching_Algorithm/getting_started_example/MatrixCompletion_Algos_Demo.ipynb]
+<img src="https://github.com/hansssxyz/Pupil_Matching_Algorithm/blob/main/getting_started_example/mona_incomplete.png" alt="Incomplete Image" width=400>
+
+```python
+def soft_impute_ws(Y,OMEGA,lambda_vals,max_iter=500,tol=10**(-4)):
+    num_iters,Bs=[],[]
+    B=np.zeros(Y.shape)
+    for lambda_val in reversed(lambda_vals):
+        prev_objective=np.inf
+        num_iter=0
+        while num_iter<=max_iter:
+            #update B by the observed entries of Y
+            B[OMEGA]=Y[OMEGA]
+            #SVD of B
+            U,S,VT=np.linalg.svd(B,full_matrices=False)
+            #apply soft thresholding operator
+            S_threshold=np.maximum(S-lambda_val,0)
+            B=U@np.diag(S_threshold)@VT
+            #calculate objective 
+            cur_objective=0.5*np.linalg.norm(OMEGA*(Y-B))**2+lambda_val*np.sum(S_threshold)
+            #decide continue or break 
+            if abs(prev_objective-cur_objective)/prev_objective<tol:
+                break 
+            else:
+                prev_objective=cur_objective
+                num_iter+=1
+        num_iters.append(num_iter)
+        Bs.append(B.copy())
+    num_iters.reverse()
+    Bs.reverse()
+    return Bs,num_iters
+```
+
+<img src="https://github.com/hansssxyz/Pupil_Matching_Algorithm/blob/main/getting_started_example/mona_completed.png" alt="Completed Image" width=500>
+
+[See the full demo, look here](https://github.com/hansssxyz/Pupil_Matching_Algorithm/blob/main/getting_started_example/MatrixCompletion_Algos_Demo.ipynb)
 
 ## Getting More Technical
 
